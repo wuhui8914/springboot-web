@@ -53,7 +53,7 @@ public class EmployeeController {
     @PostMapping("/emp")
     public String addEmp(Employee employee){
         //来到员工列表页面
-//        System.out.println(employee);
+        System.out.println(employee.getLastName());
         employeeDao.save(employee);
         //redirect:表示重定向到一个地址，  /代表当前项目路径
         //forward: 表示转发到一个地址
