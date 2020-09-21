@@ -5,6 +5,8 @@ import com.xgxx.springboot.dao.EmployeeDao;
 import com.xgxx.springboot.entities.Department;
 import com.xgxx.springboot.entities.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +46,7 @@ public class EmployeeController {
     public String toAddPage(Model model){
         //来到添加页面，查询所有部门，在页面显示
         Collection<Department> departments = departmentDao.getDepartments();
+        System.out.println(departments);
         model.addAttribute("depts",departments);
         return "emp/add";
     }

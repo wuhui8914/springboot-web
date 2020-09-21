@@ -5,6 +5,9 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.Collection;
 
@@ -31,6 +34,7 @@ public interface EmpLoyessMapper {
 //    public int insertEmployee(Employee lastName);
 
     //配置文件版
+
     public Collection<Employee> getEmployeeAll();
 
     public Employee getEmployeeId(Integer id);
@@ -39,5 +43,5 @@ public interface EmpLoyessMapper {
 
     public int insertEmployee(Employee lastName);
 
-    public int updateEmployeeById(Employee lastName);
+    public int updateEmployeeById(Employee employee);
 }
