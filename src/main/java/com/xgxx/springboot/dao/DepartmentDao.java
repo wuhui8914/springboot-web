@@ -7,6 +7,8 @@ import java.util.Map;
 import com.xgxx.springboot.entities.Department;
 import com.xgxx.springboot.mapper.DepartmentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
 
@@ -15,6 +17,9 @@ public class DepartmentDao {
 
 	@Autowired
 	DepartmentMapper departmentMapper;
+
+	@Autowired
+	RedisTemplate<Object, Object> redisTemplate;
 
 //	private static Map<Integer, Department> departments = null;
 //
@@ -35,10 +40,13 @@ public class DepartmentDao {
 	 * @Param []
 	 * @return java.util.Collection<com.xgxx.springboot.entities.Department>
 	 **/
+
+	@Cacheable(cacheNames  = "depId")
 	public Collection<Department> getDepartments(){
 		return departmentMapper.getDeptAll();
 	}
-	
+
+
 	public Department getDepartment(Integer id){
 		return departmentMapper.getDeptById(id);
 	}

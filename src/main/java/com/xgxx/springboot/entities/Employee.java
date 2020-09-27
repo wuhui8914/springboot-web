@@ -1,10 +1,14 @@
 package com.xgxx.springboot.entities;
 
+import org.springframework.data.elasticsearch.annotations.Document;
+
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 //implements Serializable 在接口中使用cacheable 必须对应的实体类要先序列化    要缓存的 Java 对象必须实现 Serializable 接口，因为 Spring 会将对象先序列化再存入 Redis
 
+//@Document(indexName = "megacorp",type = "Employee")
 public class Employee implements Serializable {
 
 	private Integer id;
@@ -14,6 +18,7 @@ public class Employee implements Serializable {
     //1 male, 0 female
     private Integer gender;
     private Integer dId;
+
     private Date birth;
 
     public Integer getId() {
@@ -62,6 +67,10 @@ public class Employee implements Serializable {
 
     public void setBirth(Date birth) {
         this.birth = birth;
+    }
+
+    //定义无参构造器，可以在实体类中有时间类型时候 缓存序列化后取值不会报错
+    public Employee() {
     }
 
     public Employee(Integer id, String lastName, String email, Integer gender, Integer dId, Date birth) {

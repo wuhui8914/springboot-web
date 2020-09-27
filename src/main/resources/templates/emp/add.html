@@ -89,6 +89,8 @@
 						<div class="form-group">
 							<label>出生日期</label>
 							<input type="text" class="form-control" name="birth" placeholder="zhangsan" th:value="${emp!=null}?${#dates.format(emp.birth,'yyyy-MM-dd HH:mm')}">
+							<!--<input type="text" class="form-control" name="birth" placeholder="zhangsan" th:value="${emp.birth}">-->
+
 						</div>
 						<button type="submit" class="btn btn-primary" th:text="${emp!=null}?'修改':'添加'">添加</button>
 						<a class="btn btn-primary"  href="#" th:href="@{/emps}">返回</a>

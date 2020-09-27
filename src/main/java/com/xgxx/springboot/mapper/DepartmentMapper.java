@@ -2,7 +2,6 @@ package com.xgxx.springboot.mapper;
 
 import com.xgxx.springboot.entities.Department;
 import org.apache.ibatis.annotations.*;
-import org.springframework.cache.annotation.Cacheable;
 
 import java.util.Collection;
 
@@ -34,7 +33,6 @@ public interface DepartmentMapper {
 
     //配置文件版
 
-    @Cacheable(cacheNames = "deptAll")
     public Collection<Department> getDeptAll();
 
     public Department getDeptById(Integer id);

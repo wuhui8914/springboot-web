@@ -37,6 +37,9 @@ public class EmployeeController {
         Collection<Employee> employees = employeeDao.getAll();
         //放在请求域中
         model.addAttribute("emps",employees);
+        //页面要显示的部门
+        Collection<Department> departments = departmentDao.getDepartments();
+        model.addAttribute("depts",departments);
         //thymeplates 默认就会拼串
         return "emp/list";
     }

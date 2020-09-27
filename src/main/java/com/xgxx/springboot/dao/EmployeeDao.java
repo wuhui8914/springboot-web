@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
 
@@ -25,6 +26,10 @@ public class EmployeeDao {
 
 	@Autowired
 	DepartmentMapper departmentMapper;
+
+
+	@Autowired
+	RedisTemplate<Object, Object> redisTemplate;
 	
 //	static{
 //		employees = new HashMap<Integer, Employee>();
@@ -49,11 +54,13 @@ public class EmployeeDao {
 
 	@Cacheable(cacheNames  = "empId")
 	public Employee get(Integer id){
+        Employee employee = empLoyessMapper.getEmployeeId(id);
+//		redisTemplate.opsForValue().set("empId",employee);
 		return empLoyessMapper.getEmployeeId(id);
 	}
 
 	//缓存清楚，通过key指定要清除的数据   allentries  是删除缓存中所有的数据
-	@CacheEvict(cacheNames  = "empId",key = "#employee.id")
+	@CacheEvict(cacheNames  = "empId",key = "#id")
 	public void delete(Integer id){
 		empLoyessMapper.deletetEmployeeById(id);
 	}
